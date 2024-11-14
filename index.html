@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webmasters small projects</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/vue@3.2.22/dist/vue.global.js"></script>
+<body>
+    <div id="app">
+        <div class="hero-bg" 
+             :style="{ backgroundImage: `url(${activeInfo.img})` }" 
+             :key="activeIndex"></div>
+        <div class="hero-title"  :key="activeIndex">{{ activeInfo.name }}</div>
+        
+        <div class="round">
+          <div class="item" 
+               :class="{ active: activeIndex === key }"
+               @click="activeIndex = key"
+               v-for="(el, key) in list"
+               :key="key"
+               :style="{ transform: itemPosition[key] }"
+               >
+            <div class="inner">
+              <img :src="el.thumbImg" alt="">
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-info" v-if="activeInfo" :key="activeIndex">
+          <div class="row">
+            <div class="title">name</div>
+            <div class="content">{{ activeInfo.name }}</div>
+          </div>
+          <div class="row">
+            <div class="title">role</div>
+            <div class="content">{{ activeInfo.role }}</div>
+          </div>
+          <div class="row">
+            <div class="title">difficulty</div>
+            <div class="content">{{ activeInfo.difficulty }}</div>
+          </div>
+          <div class="row">
+            <div class="title">description</div>
+            <div class="content desc">{{ activeInfo.desc }}</div>
+          </div>
+        </div>
+        
+        <div class="fullscreen-icon" @click="toggleFullScreen">
+          <span v-for="item in 4" :key="key"></span>
+        </div>
+      </div>
+<script src="script.js"></script>    
+</body>
+</html>
